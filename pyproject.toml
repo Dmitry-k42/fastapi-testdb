@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fastapi_testdb"
-version = "0.1.1"
+version = "0.1.2"
 description = "Reproducible SQL database state for testing routines"
 readme = "README.md"
 authors = [{ name = "Dmitrii Kononenko", email = "dmitriy.sergeevitch@gmail.com" }]

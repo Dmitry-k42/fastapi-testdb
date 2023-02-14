@@ -123,3 +123,11 @@ def test_deco():
     finally:
         if os.path.exists(PATH_TO_TEST_DB):
             os.unlink(PATH_TO_TEST_DB)
+
+
+def test_accidentally_access_to_real_db():
+    _ = create_testdb(app, connect_db, BaseOrm, dsn=TEST_DSN)
+    with pytest.raises(RuntimeError) as e:
+        with TestClient(app) as client:
+            client.get('/users/1')
+    assert 'You need to use the fake DB connection.' in e.value.args[0]

@@ -143,6 +143,15 @@ class TestDB:
         return self.engine
 
 
+def create_db_dummy():
+    """Raise a dummy exception for preventing accidental access
+    to the real database outside `testdb` with statement."""
+    raise RuntimeError('You need to use the fake DB connection. '
+                       'Class `TestDB` will help you with that. '
+                       'This exception has been raise probably because '
+                       'you tried to access to the real DB in the testing environment.')
+
+
 _n_created_types = 0  # pylint: disable=invalid-name
 
 
@@ -174,6 +183,8 @@ def create_testdb(
                          'to connect to the DB')
     if dsn is not None and create_engine_fn is not None:
         raise ValueError('Parameters `dns` and `create_engine_fn` are mutually exclusive')
+    # Prevent accessing to the database dependency accidentally
+    app.dependency_overrides[db_dependency] = create_db_dummy
     global _n_created_types  # pylint: disable=global-statement, disable=invalid-name
     _n_created_types += 1
     testdb_type = type(f'{TestDB.__class__.__class__}_{_n_created_types}', (TestDB,), {})
