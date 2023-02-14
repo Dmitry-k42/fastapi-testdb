@@ -7,6 +7,10 @@ jobs:
   Linting:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Python 3.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.7"
       - name: Clone the project
         uses: actions/checkout@v3
       - name: Install the package and its dependencies
