@@ -144,9 +144,12 @@ class TestDB:
 
 
 def create_db_dummy():
-    raise Exception('You need to use the fake DB connection. Class `TestDB` will help you with that. '
-                    'This exception has been raise probably because you tried to access to the real DB '
-                    'in the testing environment.')
+    """Raise a dummy exception for preventing accidental access
+    to the real database outside `testdb` with statement."""
+    raise RuntimeError('You need to use the fake DB connection. '
+                       'Class `TestDB` will help you with that. '
+                       'This exception has been raise probably because '
+                       'you tried to access to the real DB in the testing environment.')
 
 
 _n_created_types = 0  # pylint: disable=invalid-name
