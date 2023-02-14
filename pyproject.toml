@@ -1,0 +1,31 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastapi_testdb"
+version = "0.1.0"
+description = "Reproducible SQL database state for testing routines"
+readme = "README.md"
+authors = [{ name = "Dmitrii Kononenko", email = "dmitriy.sergeevitch@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["FastAPI", "testing", "SQLAlchemy", "database", "pytest"]
+dependencies = ["fastapi>=0.91.0", "SQLAlchemy>=2.0.3"]
+requires-python = ">=3.7"
+
+    [project.optional-dependencies]
+    dev = [
+        "pytest",
+        "httpx",
+        "pylint",
+        "build",
+        "twine",
+    ]
+
+    [project.urls]
+    repository = "https://github.com/Dmitry-k42/fastapi_testdb"
